@@ -27,6 +27,13 @@ public class GenericController<T> : ControllerBase where T : class
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] T entity)
     {
+        if (!ModelState.IsValid)
+        {
+            var error = string.Join(" | ", ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage));
+            return BadRequest(error);
+        }
         await _repository.AddAsync(entity);
         return Ok(entity);
     }
@@ -34,6 +41,13 @@ public class GenericController<T> : ControllerBase where T : class
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] T entity)
     {
+        if (!ModelState.IsValid)
+        {
+            var error = string.Join(" | ", ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage));
+            return BadRequest(error);
+        }
         await _repository.UpdateAsync(entity);
         return NoContent();
     }
