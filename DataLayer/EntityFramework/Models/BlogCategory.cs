@@ -7,7 +7,6 @@ public class BlogCategory : BaseEntity
     public string name { get; set; }
     public string? description { get; set; }
 
-    public List<Blog> blogs { get; set; }
 }
 
 public class BlogCategoryConfiguration : IEntityTypeConfiguration<BlogCategory>

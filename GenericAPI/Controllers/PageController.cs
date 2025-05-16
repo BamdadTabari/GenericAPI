@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace GenericAPI.Controllers;
 [Route("api/pages")]
 [ApiController]
-public class PageController : GenericController<Page>
+public class PageController : GenericController<BlogCategory>
 {
-    public PageController(IGenericRepository<Page> repo) : base(repo) { }
+    public PageController(IGenericRepository<BlogCategory> repo) : base(repo) { }
 }
